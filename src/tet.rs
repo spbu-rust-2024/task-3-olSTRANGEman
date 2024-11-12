@@ -5,6 +5,6 @@ mod user;
 
 #[test]
 fn is_arith_mean_correct(){
-    let nums = Vec::new();
+    let nums = ];
     assert_eq(arith_mean())
 }
