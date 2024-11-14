@@ -31,7 +31,7 @@ pub fn delete(numbers: &mut Vec<f32>) {
         let index: usize = match (input_one() as i32).try_into() {
             Ok(result) => result,
             Err(_) => {
-                println!("Try something other");
+                println!("Попробуйте что-то другое");
                 continue;
             }
         };
@@ -51,6 +51,7 @@ pub fn help() {
     println!("arith_mean        - среднее арифметическое");
     println!("geom_mean         - среднее геометрическое");
     println!("power_mean        - среднее степенное");
+    // при 0.5 будет обычным
     println!("arith_geom_mean   - арифметико-геометрическое среднее(модфицированное)");
     println!("quasi_mean        - среднее Колмогорова ");
     println!("mediana           - медиана");

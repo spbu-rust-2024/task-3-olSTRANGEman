@@ -2,6 +2,22 @@ use std::io;
 mod funcs;
 mod user;
 
+
+fn input_one() -> f32 {
+    loop {
+        let mut input = String::new();
+        let index: f32 = match io::stdin().read_line(&mut input) {
+            Ok(_) => match input.trim().parse::<f32>() {
+                Ok(num) => num,
+                Err(_) => continue,
+            },
+            Err(_) => continue,
+        };
+        return index;
+    }
+}
+
+
 fn main() {
     println!("Задайте вектор чисел через пробел:");
 
@@ -26,13 +42,68 @@ fn main() {
         match command {
             "arith_mean" => println!("{}", funcs::arith_mean(&nums)),
             "geom_mean" => println!("{}", funcs::geom_mean(&nums)),
-            "power_mean" => println!("{}", funcs::power_mean(&nums)),
-            "arith_geom_mean" => println!("{}", funcs::arith_geom_mean(&nums)),
-            "quasi_mean" => println!("{}", funcs::quasi_mean(&nums)),
+            "power_mean" =>{ 
+                let mut p;
+                loop {
+                    println!("Введите натуральную степень: ");
+                    p = input_one();
+                    if p % 1.0 == 0.0 && p > 0.0 {
+                        break;
+                    }
+                }
+                println!("{}", funcs::power_mean(&nums, p));
+            },
+            "arith_geom_mean" =>{
+                let mut w;
+                loop {
+                    println!("Введите параметр веса от 0.0 до 1.0: ");
+                    w = input_one();
+                    if (0.0..=1.0).contains(&w) {
+                        break;
+                    }
+                }
+                println!("{}", funcs::arith_geom_mean(&nums, w))
+            },
+            "quasi_mean" =>{ 
+                let mut func_num: i32;
+                loop {
+                    println!("Введите номер функции(1-1)");
+                    func_num = input_one().floor() as i32;
+                    if func_num != 1 {
+                        println!("Только 1");
+                        continue;
+                    } else {
+                        break;
+                    }
+                }
+                println!("{}", funcs::quasi_mean(&nums, func_num))
+
+            },
             "mediana" => println!("{}", funcs::mediana(&nums)),
-            "cut_arith_mean" => println!("{}", funcs::cut_arith_mean(&nums)),
-            "vin_arith_mean" => println!("{}", funcs::vin_arith_mean(&nums)),
+            "cut_arith_mean" =>{ 
+                let mut perc;
+                loop {
+                    println!("Введите процент(1-100) для удаления");
+                    perc = input_one() as i32;
+                    if 0 < perc && perc <= 100 {
+                        break;
+                    }
+                }
+                println!("{}", funcs::cut_arith_mean(&nums, perc))
+            },
+            "vin_arith_mean" =>{
+                let mut perc;
+                loop {
+                    println!("Введите процент(1-100) для удаления");
+                    perc = input_one() as i32;
+                    if 0 < perc && perc <= 100 {
+                        break;
+                    }
+                }
+                println!("{}", funcs::vin_arith_mean(&nums, perc))
+            },
             "mode" => {
+                //реализация из stats
                 let vec = stats::modes(nums.clone().into_iter()).0;
                 println!("{}", vec.iter().sum::<f32>() / (vec.len() as f32))
             }
@@ -57,7 +128,7 @@ fn main() {
             "end" => break,
             "help" => user::help(),
 
-            _ => println!("Unknown command. try 'help' "),
+            _ => println!("Неизвестная команда. Попробуйте '`help'"),
         };
     }
 }
