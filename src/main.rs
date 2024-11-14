@@ -2,7 +2,7 @@ use std::io;
 mod funcs;
 mod user;
 
-
+//перетащил из funcs для создания тестов 
 fn input_one() -> f32 {
     loop {
         let mut input = String::new();
@@ -79,7 +79,7 @@ fn main() {
                 println!("{}", funcs::quasi_mean(&nums, func_num))
 
             },
-            "mediana" => println!("{}", funcs::mediana(&nums)),
+            "median" => println!("{}", funcs::median(&nums)),
             "cut_arith_mean" =>{ 
                 let mut perc;
                 loop {
@@ -125,10 +125,15 @@ fn main() {
                     .map(|x| x as i32)
                     .collect::<Vec<i32>>()
             ),
+            "new_vec" => {
+                nums = Vec::new();
+                println!("Задайте чисела через пробел");
+                user::inp(&mut nums);
+            },
             "end" => break,
             "help" => user::help(),
 
-            _ => println!("Неизвестная команда. Попробуйте '`help'"),
+            _ => println!("Неизвестная команда. Попробуйте 'help'"),
         };
     }
 }

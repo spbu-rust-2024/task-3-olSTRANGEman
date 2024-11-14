@@ -63,7 +63,7 @@ pub fn vin_arith_mean(nums: &Vec<f32>, perc: i32) -> f32 {
         / sorted_num.len() as f32
 }
 
-pub fn mediana(nums: &Vec<f32>) -> f32 {
+pub fn median(nums: &Vec<f32>) -> f32 {
     let mut sorted_num: Vec<_> = nums.to_vec();
     sorted_num.sort_by(|a, b| a.partial_cmp(b).unwrap());
     if sorted_num.len() % 2 != 0 {

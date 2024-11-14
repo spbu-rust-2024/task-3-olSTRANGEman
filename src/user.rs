@@ -2,7 +2,7 @@ use std::io;
 // overload of f64???
 pub fn inp(numbers: &mut Vec<f32>) {
     let mut input = String::new();
-    io::stdin().read_line(&mut input).expect("ha ha");
+    io::stdin().read_line(&mut input).expect("pls help");
     for word in input.split_whitespace() {
         match word.parse::<f32>() {
             Ok(num) => numbers.push(num),
@@ -27,6 +27,7 @@ pub fn input_one() -> f32 {
 }
 
 pub fn delete(numbers: &mut Vec<f32>) {
+    println!("Задайте номер эл-та для удаления");
     loop {
         let index: usize = match (input_one() as i32).try_into() {
             Ok(result) => result,
@@ -64,6 +65,7 @@ pub fn help() {
     println!("square_k_var      - квадратический коэффициент вариации");
     println!("disp              - дисперсия");
     println!("delete            - удаление n-го элемента вектора");
+    println!("new_vec           - создание нового(пустого) вектора");
     println!("put               - добавление в вектор элементов из строки(все 'не цифры пропускаются')");
     println!("vec               - показывает вектор на данный момент");
     println!("end               - заканчивает работу");
