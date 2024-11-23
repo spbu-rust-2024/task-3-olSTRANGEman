@@ -36,7 +36,7 @@ pub fn delete(numbers: &mut Vec<f32>) {
                 continue;
             }
         };
-        if index <= numbers.len(){
+        if index <= numbers.len() {
             numbers.remove((index - 1) as usize);
             break;
         } else {
@@ -66,7 +66,9 @@ pub fn help() {
     println!("disp              - дисперсия");
     println!("delete            - удаление n-го элемента вектора");
     println!("new_vec           - создание нового(пустого) вектора");
-    println!("put               - добавление в вектор элементов из строки(все 'не цифры пропускаются')");
+    println!(
+        "put               - добавление в вектор элементов из строки(все 'не цифры пропускаются')"
+    );
     println!("vec               - показывает вектор на данный момент");
     println!("end               - заканчивает работу");
 }

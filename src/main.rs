@@ -2,7 +2,7 @@ use std::io;
 mod funcs;
 mod user;
 
-//перетащил из funcs для создания тестов 
+//перетащил из funcs для создания тестов
 fn input_one() -> f32 {
     loop {
         let mut input = String::new();
@@ -16,7 +16,6 @@ fn input_one() -> f32 {
         return index;
     }
 }
-
 
 fn main() {
     println!("Задайте вектор чисел через пробел:");
@@ -42,7 +41,7 @@ fn main() {
         match command {
             "arith_mean" => println!("{}", funcs::arith_mean(&nums)),
             "geom_mean" => println!("{}", funcs::geom_mean(&nums)),
-            "power_mean" =>{ 
+            "power_mean" => {
                 let mut p;
                 loop {
                     println!("Введите натуральную степень: ");
@@ -52,8 +51,8 @@ fn main() {
                     }
                 }
                 println!("{}", funcs::power_mean(&nums, p));
-            },
-            "arith_geom_mean" =>{
+            }
+            "arith_geom_mean" => {
                 let mut w;
                 loop {
                     println!("Введите параметр веса от 0.0 до 1.0: ");
@@ -63,8 +62,8 @@ fn main() {
                     }
                 }
                 println!("{}", funcs::arith_geom_mean(&nums, w))
-            },
-            "quasi_mean" =>{ 
+            }
+            "quasi_mean" => {
                 let mut func_num: i32;
                 loop {
                     println!("Введите номер функции(1-1)");
@@ -77,10 +76,9 @@ fn main() {
                     }
                 }
                 println!("{}", funcs::quasi_mean(&nums, func_num))
-
-            },
+            }
             "median" => println!("{}", funcs::median(&nums)),
-            "cut_arith_mean" =>{ 
+            "cut_arith_mean" => {
                 let mut perc;
                 loop {
                     println!("Введите процент(1-100) для удаления");
@@ -90,8 +88,8 @@ fn main() {
                     }
                 }
                 println!("{}", funcs::cut_arith_mean(&nums, perc))
-            },
-            "vin_arith_mean" =>{
+            }
+            "vin_arith_mean" => {
                 let mut perc;
                 loop {
                     println!("Введите процент(1-100) для удаления");
@@ -101,7 +99,7 @@ fn main() {
                     }
                 }
                 println!("{}", funcs::vin_arith_mean(&nums, perc))
-            },
+            }
             "mode" => {
                 //реализация из stats
                 let vec = stats::modes(nums.clone().into_iter()).0;
@@ -111,7 +109,10 @@ fn main() {
             "disp" => println!("{}", funcs::disp(&nums)),
             "ald" => println!("{}", funcs::ald(&nums)),
             "liner_k_var" => println!("{}", funcs::ald(&nums) / funcs::arith_mean(&nums) * 100.0),
-            "square_k_var" => println!("{}",funcs::disp(&nums).powf(0.5) / funcs::arith_mean(&nums) * 100.0),
+            "square_k_var" => println!(
+                "{}",
+                funcs::disp(&nums).powf(0.5) / funcs::arith_mean(&nums) * 100.0
+            ),
             "delete" => user::delete(&mut nums),
             "put" => {
                 println!("Задайте чисела через пробел");
@@ -129,7 +130,7 @@ fn main() {
                 nums = Vec::new();
                 println!("Задайте чисела через пробел");
                 user::inp(&mut nums);
-            },
+            }
             "end" => break,
             "help" => user::help(),
 
