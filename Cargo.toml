@@ -1,0 +1,8 @@
+[package]
+name = "third"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+qsv-stats  = "0.22.0"
+assert_cmd = "2.0"
